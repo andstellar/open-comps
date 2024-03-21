@@ -1,0 +1,5 @@
+version = 0.1
+
+[[task]]
+name = 'build'
+run = 'echo \"Build script goes here\"'

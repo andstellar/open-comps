@@ -1,0 +1,14 @@
+{
+    "extends": ["@tsconfig/strictest/tsconfig"],
+    "compilerOptions": {
+      "allowJs": true,
+      "checkJs": true,
+      "declaration": true,
+      "emitDeclarationOnly": true,
+      "moduleResolution": "bundler",
+      "module": "esnext",
+      "outDir": "dist",
+      "skipLibCheck": true
+    },
+    "include": ["components/**/*.js"]
+  }

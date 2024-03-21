@@ -1,0 +1,426 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/open-props" />
+
+        <link rel="stylesheet" href="https://unpkg.com/open-props/oklch-hues.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/open-props/colors-oklch.min.css" />
+        <link rel="stylesheet" href="https://unpkg.com/open-props/gray-oklch.min.css" />
+
+        <link rel="stylesheet" href="../css/dark.css" media="(prefers-color-scheme: dark)" />
+        <link rel="stylesheet" href="../css/light.css" media="(prefers-color-scheme: light)" />
+
+        <link rel="stylesheet" href="../css/main.css" />
+        <script type="module">
+          import '@11ty/is-land';
+        </script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                  <li><strong>Acme Corp</strong></li>
+                </ul>
+                <ul>
+                  <li><a href="#" class="secondary">Services</a></li>
+                  <li>
+                    <details class="dropdown">
+                      <summary role="button">
+                        Account
+                      </summary>
+                      <ul dir="rtl">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Logout</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </nav>
+        </header>
+
+        <main class="container-fluid">
+        <h1>Light</h1>
+        <section>
+          <h2>QR code</h2>
+          <is-land on:visible on:idle>
+            <qr-code value="https://stellarand.com"></qr-code>
+            <template data-island>
+              <script type="module" src="../components/qr-code/qr-code.js"></script>
+              </template>
+          </is-land>
+        </section>
+        <section>
+          <h2>File upload</h2>
+          <input title="Drop image or click me" type="file">
+          </section>
+          
+          <section>
+          <h2>Color picker</h2>
+          <input type="color" value="#00ffbf" />
+          </section>
+
+          <section>
+            <h2>Copy to clipboard (experimental)</h2>
+            <link rel="stylesheet" href="../components/clip-board/clip-board.css" />
+
+            <h3>States</h3>
+            <label for="textfield">Text field</label>
+            <label role="button" class="copy" for="textfield"></label>
+            <input type="text" id="textfield" value="Sample Text Field"></input>
+
+            <br>
+
+            <label for="textfield_disabled">Text field (disabled)</label>
+            <label role="button" class="copy" for="textfield_disabled" disabled></label>
+            <input type="text" id="textfield_disabled" value="Sample Text Field"></input>
+
+            <br>
+
+            <label for="textfield_copying">Text field (copying)</label>
+            <label role="button" class="copy copying" for="textfield_copying"></label>
+            <input type="text" id="textfield_copying" value="Sample Text Field"></input>
+
+            <br>
+
+            <label for="textfield_copied">Text field (copied)</label>
+            <label role="button" class="copy copied" for="textfield_copied"></label>
+            <input type="text" id="textfield_copied" value="Sample Text Field"></input>
+
+            <br>
+
+            <label for="textfield_error">Text field (error)</label>
+            <label role="button" class="copy error" for="textfield_error"></label>
+            <input type="text" id="textfield_error" value="Sample Text Field"></input>
+
+            <br>
+
+            <label for="textarea">Text area</label>
+            <label role="button" class="copy" for="textarea"></label>
+            <textarea id="textarea" rows="4" cols="50">Sample text area.
+            Including new lines.</textarea>
+
+            <br>
+            <label for="example">Non-input elements</label>
+            <label role="button" class="copy" for="example"></label>
+            <div id="example">
+              <p><em>Example</em> paragraph
+                including <b>HTML</b> tags</p>
+            </div>
+
+            <script type="module" src="../components/clip-board/clip-board.js"></script>
+          </section>
+
+          <section>
+          <h2>Image compare (experimental)</h2>
+          <link rel="stylesheet" href="../components/image-compare/image-compare.css" />
+          <image-compare>
+            <img src="https://source.unsplash.com/800x600/?nature" alt="Before" />
+            <img src="https://source.unsplash.com/800x600/?city" alt="After" />
+          </image-compare>
+          <script type="module" src="../components/image-compare/image-compare.js"></script>
+        </section>
+
+        <section>
+        <h2>Grid</h2>
+        <div class="grid">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+
+        <h2>Overflow auto</h2>
+        <div class="overflow-auto">
+            <table><thead><tr><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th><th>Heading</th></tr></thead><tbody><tr><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td></tr><tr><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td><td>Cell</td></tr></tbody></table>
+        </div>
+</section>
+
+<section>
+        <h2>Headings</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+
+        <h2>Heading group</h2>
+        <hgroup>
+            <h3>Get inspired with CSS</h3>
+            <p>How to use CSS to add glam to your Website?</p>
+        </hgroup>
+</section>
+
+<section>
+        <h2>Inline text elements</h2>
+        <ul>
+            <li><abbr title="Abbreviation">abbr</abbr></li>
+            <li><strong>strong</strong></li>
+            <li><em>em</em></li>
+            <li><del>del</del></li>
+            <li><ins>ins</ins></li>
+            <li><kbd>kbd</kbd></li>
+            <li><mark>mark</mark></li>
+            <li><s>s</s></li>
+            <li><small>small</small></li>
+            <li><sub>sub</sub></li>
+            <li><sup>sup</sup></li>
+            <li><u>u</u></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Blockquote</h2>
+        <blockquote>
+            “Design is a funny word. Some people think 
+            design means how it looks. But of course, if 
+            you dig deeper, it's really how it works.”
+            <footer>
+              <cite>— Steve Jobs</cite>
+            </footer>
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>Horizontal rule</h2>
+            <p>Paragraph before the horizontal line.</p>
+            <hr />
+            <p>Paragraph after the horizontal line.</p>
+        </section>
+
+        <section>
+            <h2>Links</h2>
+            <a href="#">Primary</a>
+            <a href="#" class="secondary">Secondary</a>
+            <a href="#" class="contrast">Contrast</a>
+            <a href="#" aria-current="page">Active link</a>
+        </section>
+
+        <section>
+            <h2>Buttons</h2>
+            <button>Button</button>
+            <button class="secondary">Secondary</button>
+            <button class="contrast">Contrast</button>
+            <button class="outline">Outline</button>
+            <button class="outline secondary">Outline Secondary</button>
+            <button class="outline contrast">Outline Contrast</button>
+            <button disabled>Disabled</button>
+            <button class="secondary" disabled>Disabled Secondary</button>
+            <button class="contrast" disabled>Disabled Contrast</button>
+
+            <button class="red">Red</button>
+            <button class="pink">Pink</button>
+            <button class="purple">Purple</button>
+            <button class="violet">Violet</button>
+            <button class="indigo">Indigo</button>
+            <button class="blue">Blue</button>
+            <button class="cyan">Cyan</button>
+            <button class="teal">Teal</button>
+            <button class="green">Green</button>
+            <button class="lime">Lime</button>
+            <button class="yellow">Yellow</button>
+            <button class="orange">Orange</button>
+
+            <h2>Button group</h2>
+            <div role="group">
+                <button>Button</button>
+                <button>Button</button>
+                <button>Button</button>
+              </div>
+            </section>
+
+            <section>
+            <h2>Tables</h2>
+            <table class="striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Planet</th>
+                    <th scope="col">Diameter (km)</th>
+                    <th scope="col">Distance to Sun (AU)</th>
+                    <th scope="col">Orbit (days)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Mercury</th>
+                    <td>4,880</td>
+                    <td>0.39</td>
+                    <td>88</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Venus</th>
+                    <td>12,104</td>
+                    <td>0.72</td>
+                    <td>225</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Earth</th>
+                    <td>12,742</td>
+                    <td>1.00</td>
+                    <td>365</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Mars</th>
+                    <td>6,779</td>
+                    <td>1.52</td>
+                    <td>687</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">Average</th>
+                    <td>9,126</td>
+                    <td>0.91</td>
+                    <td>341</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </section>
+
+            <section>
+              <h2>Forms</h2>
+              <form>
+                <fieldset>
+                  <label>
+                    Email
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="foo@bar.com"
+                      autocomplete="email"
+                    />
+                    <small id="email-helper">
+                        We'll never share your email with anyone else.
+                      </small>
+                  </label>
+                  <label>
+                    Password
+                    <input
+                      name="password"
+                      placeholder="Enter a password"
+                      autocomplete="password"
+                      type="password"
+                    />
+                  </label>
+                </fieldset>
+                <fieldset>
+                    <select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
+                        <option selected disabled value="">
+                          Select your favorite cuisine...
+                        </option>
+                        <option>Italian</option>
+                        <option>Japanese</option>
+                        <option>Indian</option>
+                        <option>Thai</option>
+                        <option>French</option>
+                    </select>
+                    <fieldset>
+                        <legend>Coding language preferences:</legend>
+                        <input type="checkbox" id="js" name="js" checked />
+                        <label htmlFor="js">Javascript</label>
+                        <input type="checkbox" id="rust" name="rust" />
+                        <label htmlFor="rust">Rust</label>
+                        <input type="checkbox" id="python" name="python" disabled />
+                        <label htmlFor="python" aria-disabled="true">Python</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Spoken language preferences</legend>
+                        <input type="radio" id="hindi" name="second-language" checked />
+                        <label htmlFor="hindi">Hindi</label>
+                        <input type="radio" id="swahili" name="second-language" />
+                        <label htmlFor="swahili">Swahili</label>
+                        <input type="radio" id="navi" name="second-language" disabled />
+                        <label htmlFor="navi" aria-disabled="true">Na'vi</label>
+                      </fieldset>
+                      <label>
+                        Happiness level
+                        <input type="range" value="69" min="0" max="100" />
+                      </label>
+                </fieldset>
+                <fieldset class="grid">
+                    <input 
+                      name="first_name"
+                      placeholder="First Name"
+                      aria-label="First name"
+                      autocomplete="firstname"
+                    />
+                    <input 
+                      name="last_name"
+                      placeholder="Last Name"
+                      aria-label="Last name"
+                      autocomplete="lastname"
+                    />
+                  </fieldset>
+                <input
+                  type="submit"
+                  value="Submit"
+                />
+                <input
+                type="reset"
+                value="Reset"
+              />
+              </form>
+              <form>
+                <fieldset>
+                    <label>
+                      <input name="terms" type="checkbox" role="switch" />
+                      I agree to the Terms
+                    </label>
+                    <label>
+                      <input name="opt-in" type="checkbox" role="switch" checked disabled />
+                      Receive news and offers
+                    </label>
+                  </fieldset>
+                <fieldset role="group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                  />
+                  <input type="submit" value="Subscribe" />
+                </fieldset>
+              </form>
+            </section>
+
+            <section>
+              <h2>Accordion</h2>
+              <article aria-label="Accordions buttons example" class="component"><details><summary role="button" class="secondary">Secondary</summary><p>Ostriches are the largest birds in the world and are native to Africa. They have long, powerful legs that they use to run at high speeds, and they can reach up to 45 miles per hour. An ostrich’s eye is bigger than its brain, which is unusual for birds.</p></details><details><summary role="button" class="contrast">Contrast</summary><p>Koalas are arboreal marsupials that are native to Australia. They are known for their cute and cuddly appearance, but they can be quite aggressive if provoked. The fingerprints of koalas are so similar to those of humans that they have been mistaken for crime scene prints.</p></details><details><summary role="button" class="outline">Primary outline</summary><p>Elephants are the largest land animals and highly intelligent with intricate communication systems. They use infrasonic sounds to talk and have long memories. They create and maintain habitats for other species, and can eat up to 300 pounds of vegetation per day. Their elongated incisor teeth, called tusks, serve various purposes, including digging and defense.</p></details><details><summary role="button" class="outline secondary">Secondary outline</summary><p>Crows are intelligent birds that are known for their problem-solving abilities. A group of crows is called a murder, and these birds have a reputation for being mischievous and sometimes even aggressive. Despite their negative image in some cultures, crows are important for their role in controlling pest populations and maintaining ecological balance.</p></details><details><summary role="button" class="outline contrast">Contrast outline</summary><p>Penguins are flightless birds with a tuxedo-like appearance. They swim well and can hold their breath for up to 20 minutes. Penguins are social, forming tight-knit communities, and some mate for life. They have adaptations to survive in cold climates, including thick feathers and a layer of fat for insulation.</p></details></article>
+            </section>
+
+            <section>
+              <h2>Card</h2>
+              <article>
+                <header>Header</header>
+                Body
+                <footer>Footer</footer>
+              </article>
+            </section>
+
+            <section>
+              <h2>Loading</h2>
+              <h3>Block</h3>
+              <article aria-busy="true"></article>
+              <h3>Inline</h3>
+              <span aria-busy="true">Generating your link...</span>
+              <h3>Button</h3>
+              <button aria-busy="true" aria-label="Please wait…" >Test</button>
+            </section>
+
+            <section>
+                <h2>Progress</h2>
+                <progress value="64" max="100"></progress>
+                <progress></progress>
+            </section>
+
+            <section>
+                <h2>Tooltips</h2>
+                <button data-tooltip="Top">Top</button>
+<button data-tooltip="Right" data-placement="right">Right</button>
+<button data-tooltip="Bottom" data-placement="bottom">Bottom</button>
+<button data-tooltip="Left" data-placement="left">Left</button>
+            </section>
+
+            
+        </main>
+    </body>
+</html>

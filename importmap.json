@@ -1,0 +1,16 @@
+{
+  "env": [
+    "browser",
+    "development",
+    "module"
+  ],
+  "imports": {
+    "qrcode": "https://ga.jspm.io/npm:qrcode@1.5.3/lib/browser.js"
+  },
+  "scopes": {
+    "https://ga.jspm.io/": {
+      "dijkstrajs": "https://ga.jspm.io/npm:dijkstrajs@1.0.3/dijkstra.js",
+      "encode-utf8": "https://ga.jspm.io/npm:encode-utf8@1.0.3/index.js"
+    }
+  }
+}
