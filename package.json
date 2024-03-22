@@ -1,10 +1,59 @@
 {
   "name": "open-comps",
   "version": "0.0.1",
-  "description": "Web Components built on top of Open Props, utilizing Progressive Enhancement",
+  "description": "Web Components built on top of Open Props, utilizing Progressive Enhancement. Minimal JS, maximum compatibility. Works with any front end framework (and without).",
+  "private": false,
+  "author": "&tellar Company (stellarand.com)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andstellar/open-comps"
+  },
   "type": "module",
+  "source": "src/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./bundle.css": {
+      "default": "./dist/bundle.css"
+    },
+    "./bundle.js": {
+      "default": "./dist/bundle.js"
+    },
+    "./main.css": {
+      "default": "./dist/main.css"
+    },
+    "./light.css": {
+      "default": "./dist/light.css"
+    },
+    "./dark.css": {
+      "default": "./dist/dark.css"
+    },
+    "./components/clip-board.css": {
+      "default": "./dist/components/clip-board/clip-board.css"
+    },
+    "./components/clip-board.js": {
+      "default": "./dist/components/clip-board/clip-board.js",
+      "types": "./dist/components/clip-board/clip-board.d.ts"
+    },
+    "./components/image-comparer.css": {
+      "default": "./dist/components/image-comparer/image-comparer.css"
+    },
+    "./components/qr-code.css": {
+      "default": "./dist/components/qr-code/qr-code.css"
+    },
+    "./components/qr-code.js": {
+      "default": "./dist/components/qr-code/qr-code.js",
+      "types": "./dist/components/qr-code/qr-code.d.ts"
+    }
+  },
   "scripts": {
-    "build": "esbuild src/index.js --bundle --format=esm --external:* --outfile=dist/index.js",
+    "build": "node ./build.js",
+    "bundle": "pnpm run check && pnpm run build",
     "check": "tsc",
     "dev": "web-dev-server --open --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,8 +71,6 @@
     "semantic-css",
     "ui"
   ],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.3",
     "@types/qrcode": "^1.5.5",

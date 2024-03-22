@@ -2,7 +2,7 @@
 import esbuild from 'esbuild'
 import { cache } from 'esbuild-plugin-cache'
 import * as importMapPlugin from "esbuild-plugin-import-map";
-import importMap from "./import-map.js";
+import {importMap} from "./import-map.js";
 
 importMapPlugin.load([importMap]);
 
@@ -32,9 +32,25 @@ esbuild.build({
     .catch(() => process.exit(1))
 
 esbuild.build({
+    entryPoints: [
+        'src/full.css',
+        'src/main.css',
+        'src/light.css',
+        'src/dark.css',
+        'src/components/clip-board/clip-board.css',
+        'src/components/image-compare/image-compare.css',
+        'src/components/qr-code/qr-code.css',
+    ],
+    bundle: false,
+    minify: true,
+    outdir: 'dist',
+})
+.catch(() => process.exit(1))
+
+esbuild.build({
     entryPoints: ['src/full.css'],
     bundle: true,
     minify: true,
     outfile: 'dist/bundle.css',
 })
-    .catch(() => process.exit(1))
+.catch(() => process.exit(1))

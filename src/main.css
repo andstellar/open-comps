@@ -2406,7 +2406,37 @@ progress::-moz-progress-bar {
     opacity: 1;
   }
 }
- 
+
+/**
+ * Hero layout
+ */
+section.hero {
+  display: grid;
+  align-items: center;
+  box-shadow: var(--group-box-shadow);
+
+  & > picture {
+    align-self: stretch;
+    background-color: var(--primary-focus);
+    
+    & > img {
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  & > article {
+    margin: 0;
+    box-shadow: none;
+    padding: var(--size-8);
+    display: grid;
+    gap: var(--spacing);
+  }
+}
+
+@media (min-width: 768px) {
+  section.hero { grid-template-columns: repeat(2, 1fr); }
+}
 
 /**
  * Accessibility & User interaction
