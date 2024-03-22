@@ -1,0 +1,10 @@
+qr-code {
+    --qr-stroke-color: var(--secondary-inverse);
+    --qr-fill-color: var(--secondary-background);
+    border-radius: var(--radius-3);
+    display: inline-block;
+    overflow: hidden;
+
+    width: 100px;
+    height: 100px;
+  }

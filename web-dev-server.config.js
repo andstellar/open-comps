@@ -1,12 +1,12 @@
 import { importMapsPlugin } from '@web/dev-server-import-maps';
 
-import {serverImportMap} from './import-maps.js';
+import {importMap} from './import-map.js';
 
 export default {
   plugins: [
     importMapsPlugin({
       inject: {
-        importMap: serverImportMap,
+        importMap,
       },
     }),
   ],

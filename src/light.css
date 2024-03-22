@@ -60,7 +60,7 @@
   --button-box-shadow: var(--shadow-1);
   --button-hover-box-shadow: var(--shadow-1);
   --table-border-color: var(--muted-border-color);
-  --table-row-stripped-background-color: oklch(from var(--gray-9) l c h / 0.038);
+  --table-row-stripped-background-color: oklch(from var(--gray-1) l c h / 0.5);
   --code-background-color: var(--gray-1);
   --code-color: var(--gray-10);
   --code-kbd-background-color: var(--color);
@@ -101,7 +101,7 @@
   --card-background-color: var(--background-color);
   --card-border-color: var(--muted-border-color);
   --card-box-shadow: var(--box-shadow);
-  --card-sectioning-background-color: oklch(99% .03 var(--hue-teal));
+  --card-sectioning-background-color: oklch(from var(--gray-1) l c h / 0.5);
 
   --dropdown-background-color: var(--gray-0);
   --dropdown-border-color: var(--gray-1);

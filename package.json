@@ -2,25 +2,39 @@
   "name": "open-comps",
   "version": "0.0.1",
   "description": "Web Components built on top of Open Props, utilizing Progressive Enhancement",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "esbuild",
+    "build": "esbuild src/index.js --bundle --format=esm --external:* --outfile=dist/index.js",
     "check": "tsc",
     "dev": "web-dev-server --open --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "css",
+    "css-framework",
+    "components",
+    "dark-mode",
+    "dark-theme",
+    "image-comparer",
+    "open-props",
+    "pure-css",
+    "qr-code",
+    "semantic-css",
     "ui"
   ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.3",
+    "@types/qrcode": "^1.5.5",
     "@web/dev-server": "^0.4.3",
     "@web/dev-server-import-maps": "^0.2.0",
     "esbuild": "^0.20.2",
     "esbuild-plugin-cache": "^0.2.10",
+    "esbuild-plugin-import-map": "^2.1.0",
     "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.3"
   }
 }
