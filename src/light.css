@@ -1,6 +1,6 @@
 :where(*) {
   --color-hue: var(--hue-teal);
-  --gray-hue: var(--hue-purple); 
+  --gray-hue: var(--hue-purple);
   --gray-chroma: 0.01;
 
   --background-color: var(--gray-0);
@@ -25,7 +25,11 @@
   --secondary-border: var(--secondary-background);
   --secondary-underline: oklch(from var(--secondary) l c h / 0.5);
   --secondary-hover: color-mix(in oklch, var(--color-13), var(--gray-13));
-  --secondary-hover-background: color-mix(in oklch, var(--color-12), var(--gray-12));
+  --secondary-hover-background: color-mix(
+    in oklch,
+    var(--color-12),
+    var(--gray-12)
+  );
   --secondary-hover-border: var(--secondary-hover-background);
   --secondary-hover-underline: var(--secondary-hover);
   --secondary-focus: oklch(from var(--color-9) l c h / 0.25);
@@ -50,11 +54,11 @@
   --h4-color: var(--gray-12);
   --h5-color: var(--gray-11);
   --h6-color: var(--gray-10);
-  
-  --mark-background-color: oklch(88% .12 var(--hue-orange));
+
+  --mark-background-color: oklch(88% 0.12 var(--hue-orange));
   --mark-color: var(--color-15);
-  --ins-color: oklch(27% .12 var(--hue-green));
-  --del-color: oklch(35% .15 var(--hue-red));
+  --ins-color: oklch(27% 0.12 var(--hue-green));
+  --del-color: oklch(35% 0.15 var(--hue-red));
   --blockquote-border-color: var(--muted-border-color);
   --blockquote-footer-color: var(--muted-color);
   --button-box-shadow: var(--shadow-1);
@@ -75,13 +79,17 @@
   --form-element-active-border-color: var(--primary-border);
   --form-element-focus-color: var(--primary-border);
   --form-element-disabled-opacity: 0.5;
-  --form-element-invalid-border-color: oklch(58% .21 var(--hue-red));
-  --form-element-invalid-active-border-color: oklch(53% .20 var(--hue-red));
-  --form-element-invalid-focus-color: var(--form-element-invalid-active-border-color);
-  --form-element-valid-border-color: oklch(42% .17 var(--hue-green));
-  --form-element-valid-active-border-color: oklch(35% .15 var(--hue-green));
-  --form-element-valid-focus-color: var(--form-element-valid-active-border-color);
-  
+  --form-element-invalid-border-color: oklch(58% 0.21 var(--hue-red));
+  --form-element-invalid-active-border-color: oklch(53% 0.2 var(--hue-red));
+  --form-element-invalid-focus-color: var(
+    --form-element-invalid-active-border-color
+  );
+  --form-element-valid-border-color: oklch(42% 0.17 var(--hue-green));
+  --form-element-valid-active-border-color: oklch(35% 0.15 var(--hue-green));
+  --form-element-valid-focus-color: var(
+    --form-element-valid-active-border-color
+  );
+
   --switch-background-color: var(--gray-3);
   --switch-checked-background-color: var(--primary-background);
   --switch-color: var(--gray-0);
@@ -120,17 +128,21 @@
   color-scheme: light;
 }
 
-input:is([type=submit],
-[type=button],
-[type=reset],
-[type=checkbox],
-[type=radio],
-[type=file]),
-input:is([type=submit],
-[type=button],
-[type=reset],
-[type=checkbox],
-[type=radio],
-[type=file]) {
+input:is(
+    [type="submit"],
+    [type="button"],
+    [type="reset"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"]
+  ),
+input:is(
+    [type="submit"],
+    [type="button"],
+    [type="reset"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"]
+  ) {
   --form-element-focus-color: var(--primary-focus);
 }

@@ -8,25 +8,28 @@ async function copyForValue(event) {
 
   if (!target) return;
 
-  const forId = target.getAttribute('for');
+  const forId = target.getAttribute("for");
   const forElement = forId ? document.getElementById(forId) : undefined;
   if (!forElement) return;
-  const text = forElement.getAttribute('value') ?? forElement.innerHTML;
+  const text = forElement.getAttribute("value") ?? forElement.innerHTML;
   try {
     const task = navigator.clipboard.writeText(text);
-    target.classList.add('copying');
+    target.classList.add("copying");
     await task;
-    target.classList.remove('copying');
-    target.classList.add('copied');
+    target.classList.remove("copying");
+    target.classList.add("copied");
   } catch (e) {
-    target.classList.add('error');
+    target.classList.add("error");
   }
   setTimeout(() => {
-    target.classList.remove('copying');
-    target.classList.remove('copied');
-    target.classList.remove('error');
-  }, 1000)
+    target.classList.remove("copying");
+    target.classList.remove("copied");
+    target.classList.remove("error");
+  }, 1000);
 }
 
-document.querySelectorAll('label[role=button].copy')
-.forEach(element => element.addEventListener('click', copyForValue));
+document.querySelectorAll("label[role=button].copy").forEach((element) => {
+  element.addEventListener("click", (event) => {
+    void copyForValue(event);
+  });
+});

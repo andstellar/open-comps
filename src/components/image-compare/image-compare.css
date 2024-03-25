@@ -1,82 +1,80 @@
 @layer demo {
+  .compare {
+    display: grid;
+    timeline-scope: --pos;
+
+    > * {
+      grid-area: 1 / 1;
+    }
+
+    > section {
+      display: grid;
+      place-content: center;
+    }
+  }
+
+  @supports (timeline-scope: --foo) {
     .compare {
-      display: grid;
-      timeline-scope: --pos;
-  
-      > * {
-        grid-area: 1 / 1;
-      }
-      
-      > section {
-        display: grid;
-        place-content: center;
-      }
+      animation: --pos linear reverse both;
+      animation-timeline: --pos;
+      animation-range: contain;
     }
-    
-    @supports (timeline-scope: --foo) {
-      .compare {
-        animation: --pos linear reverse both;
-        animation-timeline: --pos;
-        animation-range: contain;
-      }
+  }
+
+  @property --pos {
+    syntax: "<percentage>";
+    initial-value: 50%;
+    inherits: true;
+  }
+
+  @keyframes --pos {
+    from {
+      --pos: 0%;
     }
-  
-    @property --pos {
-      syntax: "<percentage>";
-      initial-value: 50%;
-      inherits: true;
+    to {
+      --pos: 100%;
     }
-    
-    @keyframes --pos {
-      from {
-        --pos: 0%;
-      }
-      to {
-        --pos: 100%;
-      }
-    }
-  
-    
-    .before {
-      mask: linear-gradient(to right, #000 0, var(--pos, 50%), #0000 0);
-    }
-    
-    .after {
-      mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
-    }
-    
-    input[type="range"] {
-      z-index: 1;
+  }
+
+  .before {
+    mask: linear-gradient(to right, #000 0, var(--pos, 50%), #0000 0);
+  }
+
+  .after {
+    mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
+  }
+
+  input[type="range"] {
+    z-index: 1;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
       appearance: none;
-      background: transparent;
-      cursor: pointer;
-      
-      &::-webkit-slider-thumb {
-        appearance: none;
-        width: 4px;
-        height: 100dvh;
-        background-color: CanvasText;
-        view-timeline: --pos inline;
-      } 
-      
-      &::-moz-range-thumb {
-        appearance: none;
-        width: 4px;
-        height: 100dvh;
-        background-color: CanvasText;
-      }
+      width: 4px;
+      height: 100dvh;
+      background-color: CanvasText;
+      view-timeline: --pos inline;
+    }
+
+    &::-moz-range-thumb {
+      appearance: none;
+      width: 4px;
+      height: 100dvh;
+      background-color: CanvasText;
     }
   }
-  
-  @layer demo.support {
-  
-    .wrapper {
-      min-block-size: 100%;
-      display: grid;
-    }
-    
-    img {
-      max-block-size: 80dvh;
-      max-inline-size: 100%;
-    }
+}
+
+@layer demo.support {
+  .wrapper {
+    min-block-size: 100%;
+    display: grid;
   }
+
+  img {
+    max-block-size: 80dvh;
+    max-inline-size: 100%;
+  }
+}

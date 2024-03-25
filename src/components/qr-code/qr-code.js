@@ -1,78 +1,87 @@
+import { html } from 'htm/preact';
+import { define } from 'preact-progressive-enhancement';
 import * as QRCode from 'qrcode';
 
-// This function is used to modify the SVG string to use CSS variables for fill and stroke
 /**
- * @param {string} svg
+ * @template P
+ * @typedef {import('preact').FunctionComponent<P>} FunctionComponent<P>
+ * */
+/**
+ * @template P
+ * @typedef {import('preact').ComponentClass<P>} ComponentClass<P>
+ * */
+/**
+ * @template P
+ * @typedef {import('preact').FunctionalComponent<P>} FunctionalComponent<P>
+ * */
+
+/**
+ * @param {Uint8Array} data
+ * @param {number} size
+ * @param {number} margin
  */
-function modifySVGForCSSVars(svg) {
-    // Define the CSS variables with default values in a <style> tag
-    const styleContent = `<style>:root { --qr-fill-color: red; --qr-stroke-color: yellow; }</style>`;
-
-    // Find the position to insert the styleContent immediately after the first <svg> tag
-    // This accounts for additional attributes within the <svg> tag
-    const position = svg.indexOf(">") + 1;
-
-    // Insert the styleContent into the SVG string at the found position
-    const modifiedSvg =
-        svg.slice(0, position) + styleContent + svg.slice(position);
-
-    // Replace inline fill and stroke with CSS variable references
-    return modifiedSvg
-        .replace(/fill="[^"]*"/g, 'fill="var(--qr-fill-color, black)"') // Default fallback color is black
-        .replace(/stroke="[^"]*"/g, 'stroke="var(--qr-stroke-color, white)"') // Default fallback stroke
-        .replace(/width="[^"]*"/g, '') // Remove width
-        .replace(/height="[^"]*"/g, ''); // And height attributes to allow for responsive scaling
-};
-
-export class QRCodeComponent extends HTMLElement {
-    constructor() {
-        super();
-        this.shadow = this.attachShadow({ mode: 'open' });
-    }
-
-    connectedCallback() {
-        // const value = this.getAttribute('value');
-        // if (value) {
-        //     this.generateQRCode(value);
-        // }
-    }
-
-    get value() {
-        return this.getAttribute('value');
-    }
-
-    set value(value) {
-        if (value)
-            this.setAttribute('value', value);
-        else
-            this.removeAttribute('value');
-    }
-
-    /**
-     * @param {any} value
-     */
-    async generateQRCode(value) {
-        const code = await QRCode.toString(
-            value,
-            { color: { dark: "#123456FF", light: "#789ABCFF" }, type: "svg", width: 200 });
-
-        this.shadow.innerHTML = modifySVGForCSSVars(code);
-    }
-
-    static get observedAttributes() {
-        return ['value'];
-    }
-
-    /**
-     * @param {string} name
-     * @param {any} oldValue
-     * @param {any} newValue
-     */
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'value' && newValue !== oldValue) {
-            this.generateQRCode(newValue);
+function qrToPath (data, size, margin) {
+    let path = ''
+    let moveBy = 0
+    let newRow = false
+    let lineLength = 0
+  
+    for (let i = 0; i < data.length; i++) {
+      const col = Math.floor(i % size)
+      const row = Math.floor(i / size)
+  
+      if (!col && !newRow) newRow = true
+  
+      if (data[i]) {
+        lineLength++
+  
+        if (!(i > 0 && col > 0 && data[i - 1])) {
+          path += newRow
+            ? `M ${col + margin} ${0.5 + row + margin}`
+            : `m ${moveBy} 0`
+  
+          moveBy = 0
+          newRow = false
         }
+  
+        if (!(col + 1 < size && data[i + 1])) {
+          path += `h ${lineLength}`
+          lineLength = 0
+        }
+      } else {
+        moveBy++
+      }
     }
+  
+    return path
+  }
+
+/**
+ * @param {QRCode.QRCode} qrData
+ * @returns {import('preact').VNode<{}>}
+ */
+function render (qrData) {
+    const margin = 4;
+    const size = qrData.modules.size
+    const data = qrData.modules.data
+    const qrcodesize = size + margin * 2
+    
+    return html`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${qrcodesize} ${qrcodesize}" shape-rendering="crispEdges">
+        <style>:root { --qr-fill-color: white; --qr-stroke-color: black; }</style>
+        <path fill="var(--qr-fill-color, black)" d="M0 0h ${qrcodesize}v${qrcodesize}H0z"/>
+        <path stroke="var(--qr-stroke-color, white)" d="${qrToPath(data, size, margin)}"/>
+    </svg>`
+  }
+  
+
+/**
+ * @param {{value: string}} props
+ */
+export function QrCode({value}) {
+    const code = QRCode.create(value);
+    return render(code);
+
 }
 
-customElements.define('qr-code', QRCodeComponent);
+export const QrCodeElement = define(QrCode, 'qr-code', ['value'], { shadow: false});

@@ -1,16 +1,7 @@
 {
-    "extends": ["@tsconfig/strictest/tsconfig"],
-    "compilerOptions": {
-      "allowJs": true,
-      "baseUrl": "",
-      "checkJs": true,
-      "declaration": true,
-      "emitDeclarationOnly": true,
-      "lib": ["DOM", "DOM.Iterable", "ESNext"],
-      "moduleResolution": "bundler",
-      "module": "esnext",
-      "outDir": "dist",
-      "skipLibCheck": true
-    },
-    "include": ["src/**/*.js"]
-  }
+  "extends": ["tsconfig-jsdoc/tsconfig.browser.json"],
+  "compilerOptions": {
+    "declarationDir": "./dist",
+  },
+  "include": ["src/**/*.js"]
+}

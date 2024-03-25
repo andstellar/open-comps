@@ -1,13 +1,13 @@
 {
   "name": "open-comps",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "description": "Web Components built on top of Open Props, utilizing Progressive Enhancement. Minimal JS, maximum compatibility. Works with any front end framework (and without).",
   "private": false,
   "author": "&tellar Company (stellarand.com)",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andstellar/open-comps"
+    "url": "git+https://github.com/andstellar/open-comps.git"
   },
   "type": "module",
   "source": "src/index.js",
@@ -15,14 +15,11 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./bundle.css": {
       "default": "./dist/bundle.css"
-    },
-    "./bundle.js": {
-      "default": "./dist/bundle.js"
     },
     "./main.css": {
       "default": "./dist/main.css"
@@ -33,12 +30,15 @@
     "./dark.css": {
       "default": "./dist/dark.css"
     },
+    "./components.css": {
+      "default": "./dist/components/components.css"
+    },
     "./components/clip-board.css": {
       "default": "./dist/components/clip-board/clip-board.css"
     },
     "./components/clip-board.js": {
-      "default": "./dist/components/clip-board/clip-board.js",
-      "types": "./dist/components/clip-board/clip-board.d.ts"
+      "types": "./dist/components/clip-board/clip-board.d.ts",
+      "default": "./dist/components/clip-board/clip-board.js"
     },
     "./components/image-comparer.css": {
       "default": "./dist/components/image-comparer/image-comparer.css"
@@ -47,15 +47,25 @@
       "default": "./dist/components/qr-code/qr-code.css"
     },
     "./components/qr-code.js": {
-      "default": "./dist/components/qr-code/qr-code.js",
-      "types": "./dist/components/qr-code/qr-code.d.ts"
+      "types": "./dist/components/qr-code/qr-code.d.ts",
+      "default": "./dist/components/qr-code/qr-code.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "node ./build.js",
-    "bundle": "pnpm run check && pnpm run build",
+    "bundle": "pnpm run bundle:clipboard && pnpm run bundle:qrcode && pnpm run bundle:index",
+    "bundle:index": "microbundle -i .\\src\\index.js -o .\\dist\\index.js",
+    "bundle:clipboard": "microbundle -i .\\src\\components\\clip-board\\clip-board.js -o .\\dist\\components\\clip-board\\clip-board.js",
+    "bundle:qrcode": "microbundle -i .\\src\\components\\qr-code\\qr-code.js -o .\\dist\\components\\qr-code\\qr-code.js",
     "check": "tsc",
     "dev": "web-dev-server --open --watch",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -79,9 +89,17 @@
     "esbuild": "^0.20.2",
     "esbuild-plugin-cache": "^0.2.10",
     "esbuild-plugin-import-map": "^2.1.0",
-    "typescript": "^5.4.3"
+    "eslint": "^8.57.0",
+    "microbundle": "^0.15.1",
+    "prettier": "^3.2.5",
+    "tsconfig-jsdoc": "^1.0.0",
+    "typescript": "^5.4.3",
+    "typescript-eslint": "^7.3.1"
   },
   "dependencies": {
+    "htm": "^3.1.1",
+    "preact": "^10.20.1",
+    "preact-progressive-enhancement": "^1.0.5",
     "qrcode": "^1.5.3"
   }
 }
