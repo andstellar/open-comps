@@ -1,0 +1,16 @@
+version = 0.1
+
+[[task]]
+name = 'build'
+run = 'deno run --allow-env --allow-net --allow-read --allow-run --allow-write .\scripts\build-npm.js'
+
+[[task]]
+name = 'clean'
+engine = 'deno'
+run = '''
+Deno.removeSync("./_npm", { recursive: true });
+'''
+
+[[task]]
+name = 'dev'
+run = 'deno run --watch --allow-net --allow-read .\scripts\dev-server.js'

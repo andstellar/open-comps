@@ -1,0 +1,20 @@
+{
+  "deno.config": "./tsconfig.json",
+  "deno.importMap": "./import-map.json",
+  "deno.enable": true,
+  "deno.lint": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "denoland.vscode-deno"
+}

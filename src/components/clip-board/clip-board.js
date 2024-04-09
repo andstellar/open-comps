@@ -19,6 +19,7 @@ async function copyForValue(event) {
     target.classList.remove("copying");
     target.classList.add("copied");
   } catch (e) {
+    console.error(e);
     target.classList.add("error");
   }
   setTimeout(() => {
