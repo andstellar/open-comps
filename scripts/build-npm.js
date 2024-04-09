@@ -32,7 +32,7 @@ await build({
   package: {
     // package.json properties
     name: "open-comps",
-    version: "1.0.6",
+    version: "1.0.7",
     description:
       "Web Components built on top of Open Props, utilizing Progressive Enhancement. Minimal JS, maximum compatibility. Works with any front end framework (and without).",
     private: false,

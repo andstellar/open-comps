@@ -53,14 +53,27 @@ import "open-comps/qr-code.js"
 Note this can be included anywhere in your `body` element as:
 
 ```
-<html>
+<body>
 ...
-    <style>
-        @import url('https://esm.sh/open-comps@1.0.6/components/qr-code/qr-code.css');
-    </style>
+    <link rel="stylesheet" href="https://esm.sh/open-comps@1.0.6/components/qr-code/qr-code.css">
     <qr-code value="https://stellarand.com"></qr-code>
-    <script type="module" src="https://esm.sh/open-comps@1.0.6/esm/components/qr-code/qr-code.js"></script>...
-</html>
+    <qr-code value="https://github.com/andstellar"></qr-code>
+    <script type="module" src="https://esm.sh/open-comps@1.0.6/esm/components/qr-code/qr-code.js"></script>
+    ...
+</body>
+```
+
+Or using [is-land](https://github.com/11ty/is-land):
+
+```
+<is-land on:visible on:idle>
+    <qr-code value="https://stellarand.com"></qr-code>
+    <template data-island>
+        <link rel="stylesheet" href="https://esm.sh/open-comps@1.0.6/components/qr-code/qr-code.css">
+        <script type="module" src="https://esm.sh/open-comps@1.0.6/esm/components/qr-code/qr-code.js"></script>
+    </template>
+</is-land>
+```
 
 ## Contributing
 
@@ -69,4 +82,3 @@ This project uses the following for development:
 - [Chomp](https://chompbuild.com/)
 - [Deno](https://deno.land)
 - [DNT](https://github.com/denoland/dnt)
-```
